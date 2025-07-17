@@ -3,9 +3,9 @@
 
 <head>
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <title>Laboratorio | Gestión de Laboratorios</title>
+    <title>Laboratorio | Gestión de Archivos</title>
     <meta content="width=device-width, initial-scale=1.0, shrink-to-fit=no" name="viewport" />
-    <link rel="icon" href="styles/images/logo-piaget.png" type="image/x-icon" />
+    <link rel="icon" href="styles/images/ametek_logo.png" type="image/x-icon" />
     <script src="js/auth.js"></script>
     <script>
         validarSesion(); // ✅ Obliga a tener sesión iniciada
@@ -37,7 +37,7 @@
     <link rel="stylesheet" href="styles/assets/css/kaiadmin.min.css" />
     <link rel="stylesheet" href="styles/assets/css/notif.css" />
     <link rel="stylesheet" href="styles/assets/css/labReportStyle.css" />
-    <link rel="shortcut icon" href="styles/images/logo-piaget.png" type="image/x-icon">
+    <link rel="shortcut icon" href="styles/images/ametek_logo.png" type="image/x-icon">
 </head>
 
 <body>
@@ -48,7 +48,7 @@
                 <!-- Logo Header -->
                 <div class="logo-header" data-background-color="dark">
                     <a href="index.html" class="logo">
-                        <img src="styles/images/logo-ancho.png" alt="navbar brand" class="navbar-brand" height="50" />
+                        <img src="styles/images/ametek_logo.png" alt="navbar brand" class="navbar-brand" height="50" />
                     </a>
                     <div class="nav-toggle">
                         <button class="btn btn-toggle toggle-sidebar">
@@ -89,9 +89,9 @@
                         </li>
 
                         <li class="nav-item active">
-                            <a href="verLaboratorios.html">
+                            <a href="verArchivos.html">
                                 <i class="fas fa-desktop"></i>
-                                <p>Laboratorios</p>
+                                <p>Archivos</p>
                             </a>
 
                     </ul>
@@ -106,7 +106,7 @@
                     <!-- Logo Header -->
                     <div class="logo-header" data-background-color="dark">
                         <a href="crearReporte.html" class="logo">
-                            <img src="styles/images/logo-piaget.png" alt="navbar brand" class="navbar-brand"
+                            <img src="styles/images/ametek_logo.png" alt="navbar brand" class="navbar-brand"
                                 height="20" />
                         </a>
                     </div>
@@ -134,7 +134,8 @@
                             </li>
                             <li class="nav-item topbar-user dropdown hidden-caret">
                                 <a class="dropdown-toggle profile-pic" data-bs-toggle="dropdown" href="#">
-                                    <span class="profile-username">Hola, <span class="fw-bold" id="userName"></span></span>
+                                    <span class="profile-username">Hola, <span class="fw-bold"
+                                            id="userName"></span></span>
                                 </a>
                                 <ul class="dropdown-menu dropdown-user animated fadeIn">
                                     <li>
@@ -160,79 +161,15 @@
                 <div class="container-fluid px-4 py-4 mt-4 ">
                     <div class="card shadow-sm">
                         <div class="card-header d-flex justify-content-between align-items-center mb-3 flex-wrap gap-2">
-                            <h3 class="mb-0">Gestión de Laboratorios</h3>
+                            <h3 class="mb-0">Gestión de Archivos</h3>
                             <div class="d-flex gap-2">
-                                <button id="btnAgregarLaboratorio" class="btn btn-primary">
-                                    <i class="fas fa-plus"></i> Agregar Laboratorio
-                                </button>
-                                <button id="btnAgregarEquipo" class="btn btn-primary">
-                                    <i class="fas fa-plus"></i> Agregar Equipo
+                                <button id="btnAgregarArchivo" class="btn btn-primary">
+                                    <i class="fas fa-plus"></i> Agregar Archivo
                                 </button>
                             </div>
                         </div>
-
-                        <!-- Pestañas de Laboratorios -->
-                        <ul class="nav nav-tabs mb-4 px-2" id="nivelTabs">
-                            <li class="nav-item">
-                                <a class="nav-link active" id="tab-primaria" data-bs-toggle="tab"
-                                    href="#contenido-primaria">Primaria</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link" id="tab-secundaria" data-bs-toggle="tab"
-                                    href="#contenido-secundaria">Secundaria</a>
-                            </li>
-                        </ul>
-
-                        <div class="tab-content">
-                            <div class="tab-pane fade show active" id="contenido-primaria">
-                                <ul class="nav custom-tabs mb-4 px-2"" id="laboratorioTabsPrimaria"></ul>
-                                <div class="tab-content" id="laboratorioContentPrimaria"></div>
-                            </div>
-                            <div class="tab-pane fade" id="contenido-secundaria">
-                                <ul class="nav custom-tabs" id="laboratorioTabsSecundaria"></ul>
-                                <div class="tab-content" id="laboratorioContentSecundaria"></div>
-                            </div>
-                        </div>
-
-                    </div>
-                </div>
-                <!-- Modal para Agregar Laboratorio -->
-                <div class="modal fade" id="modalAgregarLaboratorio" tabindex="-1">
-                    <div class="modal-dialog">
-                        <form class="modal-content" id="formAgregarLaboratorio">
-                            <div class="modal-header">
-                                <h5 class="modal-title">Agregar Laboratorio</h5>
-                                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
-                            </div>
-                            <div class="modal-body">
-                                <label for="nombreLaboratorio">Nombre:</label>
-                                <input type="text" class="form-control" id="nombreLaboratorio" required>
-
-                                <label for="nivelLaboratorio" class="mt-2">Nivel:</label>
-                                <select class="form-control" id="nivelLaboratorio" required>
-                                    <option value="">Seleccione</option>
-                                    <option value="1">Primaria</option>
-                                    <option value="2">Secundaria</option>
-                                </select>
-                            </div>
-                            <div class="modal-footer">
-                                <button type="submit" class="btn btn-primary">Guardar</button>
-                            </div>
-                        </form>
-                    </div>
-                </div>
-
-                <!-- Modal para Ver Estado del Equipo -->
-                <div class="modal fade" id="modalEquipo" tabindex="-1">
-                    <div class="modal-dialog">
-                        <div class="modal-content">
-                            <div class="modal-header">
-                                <h5 class="modal-title">Detalles del Equipo</h5>
-                                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
-                            </div>
-                            <div class="modal-body" id="detalleEquipo">
-                                <!-- Contenido dinámico -->
-                            </div>
+                        <div class="row" id="contenedor-archivos">
+                            <!-- Aquí se renderizan las tarjetas de archivos -->
                         </div>
                     </div>
                 </div>
@@ -256,22 +193,26 @@
                 </div>
             </div>
 
-            <!-- Modal Agregar Equipo -->
-            <div class="modal fade" id="modalAgregarEquipo" tabindex="-1">
+            <!-- Modal Agregar Archivo -->
+            <div class="modal fade" id="modalAgregarArchivo" tabindex="-1">
                 <div class="modal-dialog">
-                    <form id="formAgregarEquipo" class="modal-content">
+                    <form id="formAgregarArchivo" class="modal-content">
                         <div class="modal-header">
-                            <h5 class="modal-title">Agregar Equipo</h5>
+                            <h5 class="modal-title">Agregar Archivo</h5>
                             <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
                         </div>
+
+
+
                         <div class="modal-body">
                             <div class="mb-3">
-                                <label for="numeroEquipo" class="form-label">Número del Equipo</label>
-                                <input type="text" class="form-control" id="numeroEquipo" required>
+                                <label for="archivo" class="form-label">Selecciona archivo</label>
+                                <input type="file" class="form-control" id="archivo" name="archivo" required>
                             </div>
                             <div class="mb-3">
-                                <label for="laboratorioEquipo" class="form-label">Laboratorio</label>
-                                <select id="laboratorioEquipo" class="form-select" required></select>
+                                <label for="unidad_negocio" class="form-label">Unidad de Negocio</label>
+                                <input type="text" class="form-control" id="unidad_negocio" name="unidad_negocio"
+                                    required>
                             </div>
                         </div>
                         <div class="modal-footer">
@@ -281,43 +222,13 @@
                 </div>
             </div>
 
-            <!-- Modal Editar Equipo -->
-            <div class="modal fade" id="modalEditarEquipo" tabindex="-1">
-                <div class="modal-dialog">
-                    <form class="modal-content" id="formEditarEquipo">
-                        <div class="modal-header">
-                            <h5 class="modal-title">Editar Equipo</h5>
-                            <button type="button" class="btn-close" data-bs-dismiss="modal"
-                                aria-label="Cerrar"></button>
-                        </div>
-                        <div class="modal-body">
-                            <input type="hidden" id="editarIdEquipo">
-
-                            <div class="mb-3">
-                                <label for="editarNumeroEquipo" class="form-label">Nombre del equipo:</label>
-                                <input type="text" id="editarNumeroEquipo" class="form-control" required>
-                            </div>
-
-                            <div class="mb-3">
-                                <label for="editarLaboratorioEquipo" class="form-label">Cambiar de laboratorio:</label>
-                                <select id="editarLaboratorioEquipo" class="form-select" required></select>
-                            </div>
-                        </div>
-                        <div class="modal-footer d-flex justify-content-between">
-                            <button type="button" class="btn btn-danger" id="btnEliminarEquipo">
-                                <i class="fas fa-trash-alt"></i> Eliminar
-                            </button>
-                            <button type="submit" class="btn btn-success">Guardar</button>
-                        </div>
-                    </form>
-                </div>
-            </div>
-
-
-
             <footer class="footer">
                 <div class="container-fluid d-flex justify-content-between">
-                    <div>Instituto Piaget</div>
+                    <nav class="pull-left">
+                    </nav>
+                    <div>
+                        Ametek Lamb Motores S de RL de CV &copy; 2025
+                    </div>
                 </div>
             </footer>
         </div>
@@ -358,39 +269,11 @@
         <script src="styles/assets/js/kaiadmin.min.js"></script>
 
         <!-- Script para jalar los datos del laboratorio -->
-        <script src="js/gestionLaboratorios.js"></script>
+        <script src="js/subidaCliente.js"></script>
+        <script src="js/cargarArchivos.js"></script>
         <script src="js/navUser.js"></script>
 
-        <script>
-            $("#lineChart").sparkline([102, 109, 120, 99, 110, 105, 115], {
-                type: "line",
-                height: "70",
-                width: "100%",
-                lineWidth: "2",
-                lineColor: "#177dff",
-                fillColor: "rgba(23, 125, 255, 0.14)",
-            });
 
-            $("#lineChart2").sparkline([99, 125, 122, 105, 110, 124, 115], {
-                type: "line",
-                height: "70",
-                width: "100%",
-                lineWidth: "2",
-                lineColor: "#f3545d",
-                fillColor: "rgba(243, 84, 93, .14)",
-            });
-
-            $("#lineChart3").sparkline([105, 103, 123, 100, 95, 105, 115], {
-                type: "line",
-                height: "70",
-                width: "100%",
-                lineWidth: "2",
-                lineColor: "#ffa534",
-                fillColor: "rgba(255, 165, 52, .14)",
-            });
-
-
-        </script>
         <style>
             .list-group-item {
                 border: none;

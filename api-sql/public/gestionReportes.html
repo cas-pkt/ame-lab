@@ -5,10 +5,10 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <title>Reportes | Gestion de reportes </title>
     <meta content="width=device-width, initial-scale=1.0, shrink-to-fit=no" name="viewport" />
-    <link rel="icon" href="styles/images/logo-piaget.png" type="image/x-icon" />
+    <link rel="icon" href="styles/images/ametek_logo.png" type="image/x-icon" />
     <link rel="manifest" href="manifest.json">
     <meta name="theme-color" content="#11319E" />
-    <link rel="apple-touch-icon" href="/styles/images/logo-piaget.png">
+    <link rel="apple-touch-icon" href="/styles/images/ametek_logo.png">
     <script src="js/auth.js"></script>
     <script>
         validarSesion(); // ✅ Obliga a tener sesión iniciada
@@ -41,7 +41,7 @@
     <link rel="stylesheet" href="styles/assets/css/plugins.min.css" />
     <link rel="stylesheet" href="styles/assets/css/kaiadmin.min.css" />
     <link rel="stylesheet" href="styles/assets/css/notif.css" />
-    <link rel="shortcut icon" href="styles/images/logo-piaget.png" type="image/x-icon">
+    <link rel="shortcut icon" href="styles/images/ametek_logo.png" type="image/x-icon">
 </head>
 
 <body>
@@ -52,7 +52,7 @@
                 <!-- Logo Header -->
                 <div class="logo-header" data-background-color="dark">
                     <a href="index.html" class="logo">
-                        <img src="styles/images/logo-ancho.png" alt="navbar brand" class="navbar-brand" height="50" />
+                        <img src="styles/images/ametek_logo.png" alt="navbar brand" class="navbar-brand" height="50" />
                     </a>
                     <div class="nav-toggle">
                         <button class="btn btn-toggle toggle-sidebar">
@@ -93,9 +93,9 @@
                         </li>
 
                         <li class="nav-item">
-                            <a data-=""="" href="verLaboratorios.html">
+                            <a data-=""="" href="verArchivos.html">
                                 <i class="fas fa-desktop"></i>
-                                <p>Laboratorios</p>
+                                <p>Archivos</p>
                             </a>
 
                     </ul>
@@ -110,7 +110,7 @@
                     <!-- Logo Header -->
                     <div class="logo-header" data-background-color="dark">
                         <a href="crearReporte.html" class="logo">
-                            <img src="styles/images/logo-piaget.png" alt="navbar brand" class="navbar-brand"
+                            <img src="styles/images/ametek_logo.png" alt="navbar brand" class="navbar-brand"
                                 height="20" />
                         </a>
                         <div class="nav-toggle">
@@ -197,87 +197,103 @@
                                 <h4 class="mb-4 fw-bold">Seguimiento de Reportes</h4>
 
                                 <!-- 🔍 Filtros - Ajustados para mayor equilibrio -->
-                                <div class="bg-panel p-4 rounded shadow-sm mb-4">
-                                    <div class="row align-items-end g-3 mb-3">
-                                        <!-- Buscador por texto - ahora solo ocupa 6 columnas -->
-                                        <div class="col-md-6">
-                                            <label for="filtroTexto" class="form-label fw-semibold text-dark">
-                                                <i class="fas fa-search me-2 text-primary"></i> Buscar por equipo o
-                                                descripción
-                                            </label>
-                                            <input type="text" id="filtroTexto" class="form-control"
-                                                placeholder="Ej. PC-1, pantalla rota">
+                                <div class="container mt-4">
+                                    <div class="row g-4" id="cardsResumen">
+                                        <div class="col-md-3">
+                                            <div class="card shadow-sm border-start border-success border-4">
+                                                <div class="card-body">
+                                                    <h6 class="card-title">Reportes Procesados</h6>
+                                                    <h3 id="procesados" class="fw-bold text-success">0</h3>
+                                                </div>
+                                            </div>
                                         </div>
-                                    </div>
 
-                                    <div class="row align-items-end g-3">
-                                        <div class="col-md-2">
-                                            <label for="filtroFecha" class="form-label">
-                                                <i class="fas fa-calendar-alt me-1 text-primary"></i> Filtrar por Fecha
-                                            </label>
-                                            <input type="date" id="filtroFecha" class="form-control">
+                                        <div class="col-md-3">
+                                            <div class="card shadow-sm border-start border-warning border-4">
+                                                <div class="card-body">
+                                                    <h6 class="card-title">En Proceso</h6>
+                                                    <h3 id="enProceso" class="fw-bold text-warning">0</h3>
+                                                </div>
+                                            </div>
                                         </div>
-                                        <div class="col-md-2">
-                                            <label for="filtroUsuario" class="form-label">
-                                                <i class="fas fa-user me-1 text-primary"></i> Filtrar por Usuario
-                                            </label>
-                                            <select id="filtroUsuario" class="form-select"></select>
+
+                                        <div class="col-md-3">
+                                            <div class="card shadow-sm border-start border-danger border-4">
+                                                <div class="card-body">
+                                                    <h6 class="card-title">Con Errores</h6>
+                                                    <h3 id="fallidos" class="fw-bold text-danger">0</h3>
+                                                </div>
+                                            </div>
                                         </div>
-                                        <div class="col-md-2">
-                                            <label for="filtroLaboratorio" class="form-label">
-                                                <i class="fas fa-vial me-1 text-primary"></i> Filtrar por Laboratorio
-                                            </label>
-                                            <select id="filtroLaboratorio" class="form-select"></select>
-                                        </div>
-                                        <div class="col-md-2">
-                                            <label for="filtroNivel" class="form-label">
-                                                <i class="fas fa-graduation-cap me-1 text-primary"></i> Filtrar por
-                                                Nivel
-                                            </label>
-                                            <select id="filtroNivel" class="form-select"></select>
-                                        </div>
-                                        <div class="col-md-2">
-                                            <label for="filtroEstatus" class="form-label">
-                                                <i class="fas fa-thumbtack me-1 text-primary"></i> Filtrar por Estatus
-                                            </label>
-                                            <select id="filtroEstatus" class="form-select"></select>
-                                        </div>
-                                        <div class="col-md-2 d-flex align-items-end">
-                                            <button class="btn btn-outline-primary w-100" id="btnLimpiarFiltros">
-                                                <i class="fas fa-broom me-1"></i> Limpiar filtros
-                                            </button>
+
+                                        <div class="col-md-3">
+                                            <div class="card shadow-sm border-start border-primary border-4">
+                                                <div class="card-body">
+                                                    <h6 class="card-title">Total Cargados</h6>
+                                                    <h3 id="totales" class="fw-bold text-primary">0</h3>
+                                                </div>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
 
-                                <!-- Pestañas principales: Niveles -->
-                                <ul class="nav nav-tabs mb-3" id="nivelTabs" role="tablist">
-                                    <li class="nav-item" role="presentation">
-                                        <button class="nav-link active" id="tab-primaria" data-bs-toggle="tab"
-                                            data-bs-target="#panelPrimaria" type="button" role="tab">Primaria</button>
-                                    </li>
-                                    <li class="nav-item" role="presentation">
-                                        <button class="nav-link" id="tab-secundaria" data-bs-toggle="tab"
-                                            data-bs-target="#panelSecundaria" type="button"
-                                            role="tab">Secundaria</button>
-                                    </li>
-                                </ul>
-
-                                <!-- Contenedores de pestañas de laboratorios según nivel -->
-                                <div class="tab-content">
-
-                                    <!-- 🔹 Primaria -->
-                                    <div class="tab-pane fade show active" id="panelPrimaria" role="tabpanel">
-                                        <ul class="nav custom-tabs mb-3" id="tabsPrimaria" role="tablist"></ul>
-                                        <div class="tab-content" id="contenidoTabsPrimaria"></div>
-                                    </div>
-
-                                    <!-- 🔸 Secundaria -->
-                                    <div class="tab-pane fade" id="panelSecundaria" role="tabpanel">
-                                        <ul class="nav custom-tabs mb-3" id="tabsSecundaria" role="tablist"></ul>
-                                        <div class="tab-content" id="contenidoTabsSecundaria"></div>
+                                <!-- Tabla de Reportes -->
+                                <div class="container mt-5">
+                                    <h5 class="mb-3">Últimos reportes cargados</h5>
+                                    <div class="table-responsive">
+                                        <table class="table table-bordered table-hover" id="tablaReportes">
+                                            <thead class="table-light">
+                                                <tr>
+                                                    <th>#</th>
+                                                    <th>Nombre del reporte</th>
+                                                    <th>Unidad de negocio</th>
+                                                    <th>Usuario</th>
+                                                    <th>Fecha de subida</th>
+                                                    <th>Estado</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <!-- Aquí se agregan las filas dinámicamente -->
+                                            </tbody>
+                                        </table>
                                     </div>
                                 </div>
+
+                                <!-- Modal Detalles del Reporte -->
+                                <div class="modal fade" id="modalDetalleReporte" tabindex="-1"
+                                    aria-labelledby="modalDetalleReporteLabel" aria-hidden="true">
+                                    <div class="modal-dialog modal-lg modal-dialog-centered">
+                                        <div class="modal-content">
+
+                                            <div class="modal-header">
+                                                <h5 class="modal-title" id="modalDetalleReporteLabel">Detalles del
+                                                    Reporte</h5>
+                                                <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                                    aria-label="Cerrar"></button>
+                                            </div>
+
+                                            <div class="modal-body">
+                                                <p><strong>Nombre del Reporte:</strong> <span id="detalleNombre"></span>
+                                                </p>
+                                                <p><strong>Unidad de Negocio:</strong> <span id="detalleUnidad"></span>
+                                                </p>
+                                                <p><strong>Usuario:</strong> <span id="detalleUsuario"></span></p>
+                                                <p><strong>Fecha de Subida:</strong> <span id="detalleFecha"></span></p>
+                                                <p><strong>Estado:</strong> <span id="detalleEstado"></span></p>
+                                                <p><strong>Total de Filas:</strong> <span id="detalleFilas"></span></p>
+                                                <p><strong>Observaciones:</strong> <span
+                                                        id="detalleObservaciones"></span></p>
+                                            </div>
+
+                                            <div class="modal-footer">
+                                                <button type="button" class="btn btn-secondary"
+                                                    data-bs-dismiss="modal">Cerrar</button>
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                </div>
+
                             </div>
                         </div>
                     </div>
@@ -332,7 +348,7 @@
                 <nav class="pull-left">
                 </nav>
                 <div>
-                    Instituto Piaget
+                    Ametek Lamb Motores S de RL de CV &copy; 2025
                 </div>
             </div>
         </footer>
